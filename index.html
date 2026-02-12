@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECHTORRENT 2K26 | IETE</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: linear-gradient(135deg, #fbcfe8 0%, #bae6fd 100%); background-attachment: fixed; color: #1e293b; text-align: center; }
+        .card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; max-width: 450px; margin: 30px auto; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .page { display: none; padding: 15px; }
+        .active { display: block; }
+        h1 { color: #be185d; margin-bottom: 5px; }
+        .btn { display: block; width: 90%; margin: 15px auto; padding: 15px; background: #be185d; color: white; font-weight: bold; border-radius: 10px; border: none; cursor: pointer; }
+        .event-card { background: white; padding: 15px; border-radius: 12px; margin-bottom: 10px; border-left: 6px solid #be185d; text-align: left; cursor: pointer; }
+        .coord-box { font-size: 0.85rem; margin-top: 20px; text-align: left; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 10px; }
+        .back-btn { color: #be185d; cursor: pointer; text-decoration: underline; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div id="page1" class="page active">
+        <div class="card">
+            <h1>TECHTORRENT 2K26</h1>
+            <p><strong>A 2-DAY TECHNICAL EVENT BY IETE</strong></p>
+            <p>FEB 12th & 13th</p>
+            <button class="btn" onclick="showPage('page2')">TAP TO REGISTER</button>
+            
+            <div class="coord-box">
+                <strong>Faculty Coordinator:</strong> Dr. V. Saritha (9704149491)<br>
+                <strong>Convenor:</strong> Dr. D. Venkata Rao (HOD-ECE)
+            </div>
+        </div>
+    </div>
+
+    <div id="page2" class="page">
+        <div class="card">
+            <p class="back-btn" onclick="showPage('page1')">← Back</p>
+            <h2>Select Schedule</h2>
+            <button class="btn" onclick="showEvents('day1')" style="background:#0369a1">DAY 1 (FEB 12th)</button>
+            <button class="btn" onclick="showEvents('day2')" style="background:#0369a1">DAY 2 (FEB 13th)</button>
+        </div>
+    </div>
+
+    <div id="page3" class="page">
+        <div class="card">
+            <p class="back-btn" onclick="showPage('page2')">← Change Day</p>
+            <h2 id="dayTitle">Events</h2>
+            <div id="eventList"></div>
+            
+            <div class="coord-box">
+                <strong>Student Coordinators:</strong><br>
+                V. Jatin Karthik - 9143917143<br>
+                R. Rahul Varma - 9573189933<br>
+                G. Likitha Sri - 9618977807<br>
+                P. Lokesh - 9182147151
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function showEvents(day) {
+            const list = document.getElementById('eventList');
+            list.innerHTML = "";
+            if(day === 'day1') {
+                document.getElementById('dayTitle').innerText = "Day 1 Events";
+                // ADD YOUR GOOGLE FORM LINKS IN THE QUOTES BELOW
+                addEvent("SIMUTECH ARENA", "Circuit Simulation Challenge", "https://docs.google.com/forms/d/e/1FAIpQLSdH5pyGBnxN6kT0I-ZOBeXrxmn44WvmGrkIWKxDpmyPFk4nog/viewform?usp=header");
+                addEvent("CLUE CHASE", "Murder Mystery (Team of 2)", "https://docs.google.com/forms/d/e/1FAIpQLScT5XkoFfrPUOR3Xpo726moLf4fMJm41z43msTjoEliCNGUoA/viewform?usp=publish-editor");
+            } else {
+                document.getElementById('dayTitle').innerText = "Day 2 Events";
+                addEvent("CONCEPT CLASH", "Spot Idea Presentation", "https://docs.google.com/forms/d/e/1FAIpQLSc1H4u1ueI2w_scsk8Hv6uH7lKPRkaHVH0dxWW3GoSOrICEpQ/viewform?usp=publish-editor");
+                addEvent("CODE SPRINT", "Coding & Compiling Challenge", "https://docs.google.com/forms/d/e/1FAIpQLSdSFN2P3V8XjdCLXj4XshSRd5KKSjJVqyiWzniysvnfuOChDw/viewform?usp=publish-editor");
+            }
+            showPage('page3');
+        }
+
+        function addEvent(name, desc, link) {
+            document.getElementById('eventList').innerHTML += `
+                <div class="event-card" onclick="window.location.href='${link}'">
+                    <strong style="color:#be185d">${name}</strong><br>
+                    <small>${desc}</small><br>
+                    <span style="font-size:0.7rem; color:#0369a1">Tap to Open Form</span>
+                </div>`;
+        }
+    </script>
+</body>
+</html>
