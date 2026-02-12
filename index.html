@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TECHTORRENT 2K26 | IETE</title>
     <style>
-        body { margin: 0; font-family: sans-serif; background: linear-gradient(135deg, #fbcfe8 0%, #bae6fd 100%); background-attachment: fixed; color: #1e293b; text-align: center; }
-        .card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; max-width: 450px; margin: 30px auto; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 5px rgba(244, 114, 182, 0.4); } 50% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.7); } }
+
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: radial-gradient(circle at top, #1e1b4b 0%, #0f172a 100%); background-attachment: fixed; color: #f1f5f9; text-align: center; }
+        .card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); padding: 25px; border-radius: 24px; max-width: 450px; margin: 30px auto; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); animation: fadeInUp 0.8s ease-out; }
         .page { display: none; padding: 15px; }
         .active { display: block; }
-        h1 { color: #be185d; margin-bottom: 5px; }
-        .btn { display: block; width: 90%; margin: 15px auto; padding: 15px; background: #be185d; color: white; font-weight: bold; border-radius: 10px; border: none; cursor: pointer; }
-        .event-card { background: white; padding: 15px; border-radius: 12px; margin-bottom: 10px; border-left: 6px solid #be185d; text-align: left; cursor: pointer; }
-        .coord-box { font-size: 0.85rem; margin-top: 20px; text-align: left; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 10px; }
-        .back-btn { color: #be185d; cursor: pointer; text-decoration: underline; font-size: 0.9rem; }
+        h1 { color: #f472b6; text-shadow: 0 0 15px rgba(244, 114, 182, 0.3); margin-bottom: 5px; }
+        
+        .btn { display: block; width: 90%; margin: 15px auto; padding: 15px; background: linear-gradient(90deg, #be185d, #db2777); color: white; font-weight: bold; border-radius: 12px; border: none; cursor: pointer; transition: 0.3s; animation: pulseGlow 2s infinite; }
+        .btn:hover { transform: scale(1.05); }
+        .btn-map { background: #0369a1; animation: none; padding: 10px; font-size: 0.9rem; }
+
+        .event-card { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; margin-bottom: 12px; border-left: 6px solid #f472b6; text-align: left; cursor: pointer; transition: 0.3s; }
+        .event-card:hover { background: rgba(255, 255, 255, 0.1); transform: translateX(10px); }
+        .time-tag { background: #38bdf8; color: #0f172a; padding: 2px 8px; border-radius: 5px; font-size: 0.75rem; font-weight: bold; }
+
+        .coord-box { font-size: 0.85rem; margin-top: 15px; text-align: left; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; line-height: 1.6; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .back-btn { color: #94a3b8; cursor: pointer; text-decoration: underline; font-size: 0.9rem; }
+        hr { border: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 12px 0; }
+        strong.label { color: #38bdf8; }
     </style>
 </head>
 <body>
@@ -21,39 +33,41 @@
     <div id="page1" class="page active">
         <div class="card">
             <h1>TECHTORRENT 2K26</h1>
-            <p><strong>A 2-DAY TECHNICAL EVENT BY IETE</strong></p>
-            <p>FEB 12th & 13th</p>
-            <button class="btn" onclick="showPage('page2')">TAP TO REGISTER</button>
+            <p style="color: #94a3b8;"><strong>A 2-DAY TECHNICAL EVENT BY IETE</strong></p>
+            <p>📅 <strong>FEB 16th & 17th</strong></p>
+            
+            <button class="btn" onclick="showPage('page2')">VIEW SCHEDULE & REGISTER</button>
+            <button class="btn btn-map" onclick="window.open('https://maps.app.goo.gl/YourVRSECLocation')">📍 NAVIGATE TO VENUE</button>
             
             <div class="coord-box">
-                <strong>Faculty Coordinator:</strong> Dr. V. Saritha (9704149491)<br>
-                <strong>Convenor:</strong> Dr. D. Venkata Rao (HOD-ECE)
+                <strong class="label">Student Coordinators:</strong><br>
+                V. Jatin Karthik — 9143917143<br>
+                R. Rahul Varma — 9573189933<br>
+                G. Likitha Sri — 9618977807<br>
+                P. Lokesh — 9182147151
+                <hr>
+                <strong class="label">Faculty Details:</strong><br>
+                <strong>Convenor:</strong> Dr. D. Venkata Rao<br>
+                (HOD-ECE & Dean-School of Engineering)<br>
+                <strong>Faculty Coordinator:</strong> Dr. V. Saritha (+91 9704149491)
             </div>
         </div>
     </div>
 
     <div id="page2" class="page">
         <div class="card">
-            <p class="back-btn" onclick="showPage('page1')">← Back</p>
-            <h2>Select Schedule</h2>
-            <button class="btn" onclick="showEvents('day1')" style="background:#0369a1">DAY 1 (FEB 12th)</button>
-            <button class="btn" onclick="showEvents('day2')" style="background:#0369a1">DAY 2 (FEB 13th)</button>
+            <span class="back-btn" onclick="showPage('page1')">← Back to Home</span>
+            <h2 style="color: #38bdf8;">Select Day</h2>
+            <button class="btn" onclick="showEvents('day1')" style="background: #0369a1; animation: none;">DAY 1 (FEB 16th)</button>
+            <button class="btn" onclick="showEvents('day2')" style="background: #0369a1; animation: none;">DAY 2 (FEB 17th)</button>
         </div>
     </div>
 
     <div id="page3" class="page">
         <div class="card">
-            <p class="back-btn" onclick="showPage('page2')">← Change Day</p>
-            <h2 id="dayTitle">Events</h2>
+            <span class="back-btn" onclick="showPage('page2')">← Change Day</span>
+            <h2 id="dayTitle" style="color: #38bdf8;">Events</h2>
             <div id="eventList"></div>
-            
-            <div class="coord-box">
-                <strong>Student Coordinators:</strong><br>
-                V. Jatin Karthik - 9143917143<br>
-                R. Rahul Varma - 9573189933<br>
-                G. Likitha Sri - 9618977807<br>
-                P. Lokesh - 9182147151
-            </div>
         </div>
     </div>
 
@@ -61,30 +75,31 @@
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
+            window.scrollTo(0, 0);
         }
 
         function showEvents(day) {
             const list = document.getElementById('eventList');
             list.innerHTML = "";
             if(day === 'day1') {
-                document.getElementById('dayTitle').innerText = "Day 1 Events";
-                // ADD YOUR GOOGLE FORM LINKS IN THE QUOTES BELOW
-                addEvent("SIMUTECH ARENA", "Circuit Simulation Challenge", "https://docs.google.com/forms/d/e/1FAIpQLSdH5pyGBnxN6kT0I-ZOBeXrxmn44WvmGrkIWKxDpmyPFk4nog/viewform?usp=header");
-                addEvent("CLUE CHASE", "Murder Mystery (Team of 2)", "https://docs.google.com/forms/d/e/1FAIpQLScT5XkoFfrPUOR3Xpo726moLf4fMJm41z43msTjoEliCNGUoA/viewform?usp=publish-editor");
+                document.getElementById('dayTitle').innerText = "Day 1: Feb 16th";
+                addEvent("SIMUTECH ARENA", "9 AM - 12 PM", "Circuit Simulation Challenge", "https://docs.google.com/forms/d/e/1FAIpQLSdH5pyGBnxN6kT0I-ZOBeXrxmn44WvmGrkIWKxDpmyPFk4nog/viewform?usp=header");
+                addEvent("CODE SPRINT", "2 PM - 5 PM", "Coding & Compiling Challenge", "https://docs.google.com/forms/d/e/1FAIpQLSdSFN2P3V8XjdCLXj4XshSRd5KKSjJVqyiWzniysvnfuOChDw/viewform?usp=publish-editor");
             } else {
-                document.getElementById('dayTitle').innerText = "Day 2 Events";
-                addEvent("CONCEPT CLASH", "Spot Idea Presentation", "https://docs.google.com/forms/d/e/1FAIpQLSc1H4u1ueI2w_scsk8Hv6uH7lKPRkaHVH0dxWW3GoSOrICEpQ/viewform?usp=publish-editor");
-                addEvent("CODE SPRINT", "Coding & Compiling Challenge", "https://docs.google.com/forms/d/e/1FAIpQLSdSFN2P3V8XjdCLXj4XshSRd5KKSjJVqyiWzniysvnfuOChDw/viewform?usp=publish-editor");
+                document.getElementById('dayTitle').innerText = "Day 2: Feb 17th";
+                addEvent("MURDER MYSTERY", "9 AM - 12 PM", "Clue Chase & Critical Thinking", "https://docs.google.com/forms/d/e/1FAIpQLScT5XkoFfrPUOR3Xpo726moLf4fMJm41z43msTjoEliCNGUoA/viewform?usp=publish-editor");
+                addEvent("CONCEPT CLASH", "2 PM - 5 PM", "Spot Idea Presentation", "https://docs.google.com/forms/d/e/1FAIpQLSc1H4u1ueI2w_scsk8Hv6uH7lKPRkaHVH0dxWW3GoSOrICEpQ/viewform?usp=publish-editor");
             }
             showPage('page3');
         }
 
-        function addEvent(name, desc, link) {
+        function addEvent(name, time, desc, link) {
             document.getElementById('eventList').innerHTML += `
                 <div class="event-card" onclick="window.location.href='${link}'">
-                    <strong style="color:#be185d">${name}</strong><br>
-                    <small>${desc}</small><br>
-                    <span style="font-size:0.7rem; color:#0369a1">Tap to Open Form</span>
+                    <span class="time-tag">${time}</span><br><br>
+                    <strong style="color:#f472b6; font-size:1.1rem;">${name}</strong><br>
+                    <small style="color:#cbd5e1">${desc}</small><br>
+                    <span style="font-size:0.75rem; color:#38bdf8; font-weight:bold;">Tap to Register →</span>
                 </div>`;
         }
     </script>
